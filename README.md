@@ -70,7 +70,7 @@ pip install .
 Once you have everything set up, launch the program with:
 
 ```bash
-python blink_detection.py
+python -m blink
 ```
 ## 🎛️ Controls
 - Start/Stop Detection: The program starts detecting blinks as soon as the camera feed is active.

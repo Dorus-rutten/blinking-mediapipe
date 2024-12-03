@@ -6,7 +6,7 @@ setup(
     author="Dorus Rutten",
     author_email="Dorsrutten@gmail.com",
     description="A Mediapipe-based project to track blinking and analyze eye movements.",
-    url="https://github.com/Dorus-rutten/Rock-Paper-Scissers",
+    url="https://github.com/Dorus-rutten/blinking-mediapipe",
     packages=find_packages(),
     install_requires=[
         "opencv-contrib-python==4.8.0.74",
