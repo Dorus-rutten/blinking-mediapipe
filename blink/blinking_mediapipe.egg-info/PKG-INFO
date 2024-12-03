@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: blinking-mediapipe
+Version: 0.1.0
+Summary: A Mediapipe-based project to track blinking and analyze eye movements.
+Home-page: https://github.com/Dorus-rutten/blinking-mediapipe
+Author: Dorus Rutten
+Author-email: Dorsrutten@gmail.com
+Requires-Python: ==3.9.20
+Requires-Dist: opencv-contrib-python==4.8.0.74
+Requires-Dist: opencv-python==4.8.0.74
+Requires-Dist: mediapipe==0.10.14
+Requires-Dist: numpy==1.25.1

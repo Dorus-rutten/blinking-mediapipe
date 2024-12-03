@@ -1,0 +1,6 @@
+setup.py
+blinking_mediapipe.egg-info/PKG-INFO
+blinking_mediapipe.egg-info/SOURCES.txt
+blinking_mediapipe.egg-info/dependency_links.txt
+blinking_mediapipe.egg-info/requires.txt
+blinking_mediapipe.egg-info/top_level.txt
