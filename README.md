@@ -29,8 +29,8 @@ To get started with the **Eye Blink Detection**, follow these steps:
 Download the program from GitHub:
 
 ```bash
-git clone https://github.com/dorus-rutten/Eye-Blink-Detection
-cd Eye-Blink-Detection
+git clone https://github.com/Dorus-rutten/blinking-mediapipe
+cd blinking-mediapipe
 ```
 2. Set Up a Python Environment
 We recommend using Conda or venv to create a dedicated Python environment.
