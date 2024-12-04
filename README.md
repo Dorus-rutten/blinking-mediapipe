@@ -31,6 +31,7 @@ Download the program from GitHub:
 ```bash
 git clone https://github.com/Dorus-rutten/blinking-mediapipe
 cd blinking-mediapipe
+cd blink
 ```
 2. Set Up a Python Environment
 We recommend using Conda or venv to create a dedicated Python environment.
