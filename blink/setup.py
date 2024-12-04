@@ -10,9 +10,9 @@ setup(
     packages=find_packages(),
     install_requires=[
         "opencv-contrib-python==4.8.0.74",
-        "opencv-python==4.8.0.74",
         "mediapipe==0.10.14",
-        "numpy==1.25.1"
+        "numpy==1.25.1",
+        "pylsl"
     ],
-    python_requires='==3.9.20',
+    python_requires='>=3.9.20',
 )

@@ -1,12 +1,16 @@
-import cv2
-import numpy as np
-import mediapipe as mp
-from pylsl import StreamInfo, StreamOutlet
-import time
-from datetime import datetime
+try:
+    print("Hello World")
+    import cv2
+    import numpy as np
+    import mediapipe as mp
+    print("Hello World")
+    from pylsl import StreamInfo, StreamOutlet
+    from datetime import datetime
+except Exception as e:
+    print(e)
 
-LEFT_EYE = [33, 160, 158, 133, 153, 144]
-RIGHT_EYE = [362, 385, 387, 263, 373, 380]
+LEFT_EYE = [33, 160, 158, 133, 153, 144]#landmarks for the left eye
+RIGHT_EYE = [362, 385, 387, 263, 373, 380]#landmarks for the right eye
 
 #counts the times the cde seed u blink
 counter = 0
@@ -18,27 +22,26 @@ Left_Eye = 33
 Right_Eye = 133
 Chin = 152
 
-best_pitch = 0.4
+best_pitch = 0.4#the best pitch for the user by default is 0.4
 
 # Create an outlet for the blink stream
 info = StreamInfo('BlinkStream', 'Markers', 2, 0, 'string', 'blink1234')  # Name, type, channel count, nominal rate (0 = irregular), format, unique ID
-outlet = StreamOutlet(info)
-# Function to calculate the head pose using the 3D facial landmarks
+outlet = StreamOutlet(info)#create the stream
 
+# Function to send a marker to LSL
 def sendlsl():
     current_time = datetime.now().strftime("%H:%M:%S.%f")[:-4]  # Get the current time
     outlet.push_sample(["blink", current_time])  # Sending as a list
     print(f"Blink detected! Time: {current_time}")  
 
 
-def get_head_pose(landmarks):
+def get_head_pose(landmarks):#function to get the head pose
     # Convert the landmarks into numpy arrays for easier math
     nose = np.array([landmarks[Nose].x, landmarks[Nose].y, landmarks[Nose].z])
     left_eye = np.array([landmarks[Left_Eye].x, landmarks[Left_Eye].y, landmarks[Left_Eye].z])
     right_eye = np.array([landmarks[Right_Eye].x, landmarks[Right_Eye].y, landmarks[Right_Eye].z])
     chin = np.array([landmarks[Chin].x, landmarks[Chin].y, landmarks[Chin].z])
-    
-    # Find the vectors representing the orientation of the head
+
     # Calculate the vector between nose and chin
     nose_chin_vector = chin - nose
     # Calculate the vector between left and right eyes
@@ -79,13 +82,9 @@ def adjust_rac_based_on_pitch(pitch,best_pitch):
         # For example, you can make it more sensitive to larger pitch changes
         rac = base_rac - (abs(pitch - best_pitch) * scale)
         
-    # if abs(pitch - best_pitch) >= 0.40:
-    #     print("data not trusted")
-    #     rac = 0
-    # else:
-    #     # print(pp)
-    #     pass
-
+    if abs(pitch - best_pitch) >= 0.40:
+        print("data not trusted")
+        rac = 0
     return rac
 
 
