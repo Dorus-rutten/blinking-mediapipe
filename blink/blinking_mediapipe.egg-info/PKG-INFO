@@ -10,3 +10,4 @@ Requires-Dist: opencv-contrib-python==4.8.0.74
 Requires-Dist: mediapipe==0.10.14
 Requires-Dist: numpy==1.25.1
 Requires-Dist: pylsl
+Requires-Dist: pyxdf

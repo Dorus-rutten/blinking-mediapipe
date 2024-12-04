@@ -12,7 +12,8 @@ setup(
         "opencv-contrib-python==4.8.0.74",
         "mediapipe==0.10.14",
         "numpy==1.25.1",
-        "pylsl"
+        "pylsl",
+        "pyxdf",
     ],
     python_requires='>=3.9.20',
 )
