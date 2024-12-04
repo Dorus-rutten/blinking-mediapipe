@@ -1,7 +1,9 @@
 import cv2
 import numpy as np
 import mediapipe as mp
-
+from pylsl import StreamInfo, StreamOutlet
+import time
+from datetime import datetime
 
 LEFT_EYE = [33, 160, 158, 133, 153, 144]
 RIGHT_EYE = [362, 385, 387, 263, 373, 380]
@@ -18,7 +20,17 @@ Chin = 152
 
 best_pitch = 0.4
 
+# Create an outlet for the blink stream
+info = StreamInfo('BlinkStream', 'Markers', 2, 0, 'string', 'blink1234')  # Name, type, channel count, nominal rate (0 = irregular), format, unique ID
+outlet = StreamOutlet(info)
 # Function to calculate the head pose using the 3D facial landmarks
+
+def sendlsl():
+    current_time = datetime.now().strftime("%H:%M:%S.%f")[:-4]  # Get the current time
+    outlet.push_sample(["blink", current_time])  # Sending as a list
+    print(f"Blink detected! Time: {current_time}")  
+
+
 def get_head_pose(landmarks):
     # Convert the landmarks into numpy arrays for easier math
     nose = np.array([landmarks[Nose].x, landmarks[Nose].y, landmarks[Nose].z])
@@ -151,7 +163,10 @@ while cap.isOpened():
                 if not blink_detected:
                     blink_counter += 1
                     blink_detected = True
-                    cv2.putText(frame, "Blink Detected!", (100, 500), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+                    
+                    # Send a marker to LSL
+                    sendlsl()
+
                     print(blink_counter)
                     print("left eye is:",left_ear)
                     print("right eye is:",right_ear)
