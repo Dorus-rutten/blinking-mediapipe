@@ -82,7 +82,7 @@ def adjust_rac_based_on_pitch(pitch, best_pitch):
         rac = base_rac - (abs(pitch - best_pitch) * scale)
     return max(rac, 0.08)  # Ensure the minimum threshold is 0.08qqqqq
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 mp_face_mesh = mp.solutions.face_mesh
 face_mesh = mp_face_mesh.FaceMesh(static_image_mode=False, max_num_faces=1, refine_landmarks=True, min_detection_confidence=0.5)
 
